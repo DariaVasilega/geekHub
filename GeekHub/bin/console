@@ -1,0 +1,20 @@
+<?php
+declare(strict_types=1);
+chdir(__DIR__);
+
+require '../vendor/autoload.php';
+
+$action = ucfirst($argv[1]);
+$params=[];
+if ($action === 'Create'){
+    $params['name']= readline('input name: ');
+    $params['category'] = readline('input category: ');
+    $params['price'] = (float) readline('input price: ');
+    $params['quantity'] = (int) readline('input quantity: ');
+}
+elseif ($action === 'Move'){
+ echo 'das';
+}
+$container = new \Core\ContainerBuilder();
+$controller = $container->get('App\\'.$action);
+$controller->index($params);
